@@ -26,7 +26,13 @@ jobs:
         run: |
           cp -r lib/* temp_project/lib/
           cp pubspec.yaml temp_project/
-          cp -r assets temp_project/ 2>/dev/null || :
+          cp -r assets temp_project/
+      
+      - name: 🎨 Generate app icons
+        run: |
+          cd temp_project
+          flutter pub get
+          dart run flutter_launcher_icons
       
       - name: 📥 Get packages
         run: |
