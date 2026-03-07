@@ -21,7 +21,7 @@ flutter:
 
 flutter_launcher_icons:
   android: true
-  ios: true
+  ios: false  # ✅ تعطيل iOS
   image_path: "assets/icon/logo.png"
   adaptive_icon_background: "#D4AF37"
   adaptive_icon_foreground: "assets/icon/logo.png"

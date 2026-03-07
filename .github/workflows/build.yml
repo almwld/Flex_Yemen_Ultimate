@@ -34,11 +34,6 @@ jobs:
           flutter pub get
           dart run flutter_launcher_icons
       
-      - name: 📥 Get packages
-        run: |
-          cd temp_project
-          flutter pub get
-      
       - name: 🔨 Build APK
         run: |
           cd temp_project
