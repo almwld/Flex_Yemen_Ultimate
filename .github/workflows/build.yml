@@ -26,13 +26,17 @@ jobs:
         run: |
           cp -r lib/* temp_project/lib/
           cp pubspec.yaml temp_project/
-          cp -r assets temp_project/
+          cp -r assets temp_project/ 2>/dev/null || :
       
       - name: 🎨 Generate app icons
         run: |
           cd temp_project
           flutter pub get
-          dart run flutter_launcher_icons
+          if [ -f "assets/icon/logo.png" ]; then
+            dart run flutter_launcher_icons
+          else
+            echo "⚠️ No icon found, skipping..."
+          fi
       
       - name: 🔨 Build APK
         run: |
