@@ -15,15 +15,31 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.19.6'
-          
+      
+      - name: 🆕 Create new Flutter project
+        run: |
+          flutter create --platforms=android --org com.flexyemen temp_project
+          rm -rf temp_project/lib/*
+          rm -rf temp_project/pubspec.yaml
+      
+      - name: 📋 Copy our files
+        run: |
+          cp -r lib/* temp_project/lib/
+          cp pubspec.yaml temp_project/
+          cp -r assets temp_project/ 2>/dev/null || :
+      
       - name: 📥 Get packages
-        run: flutter pub get
-        
+        run: |
+          cd temp_project
+          flutter pub get
+      
       - name: 🔨 Build APK
-        run: flutter build apk --release
-        
+        run: |
+          cd temp_project
+          flutter build apk --release
+      
       - name: 📤 Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: flex-yemen-ultimate
-          path: build/app/outputs/flutter-apk/app-release.apk
+          path: temp_project/build/app/outputs/flutter-apk/app-release.apk
