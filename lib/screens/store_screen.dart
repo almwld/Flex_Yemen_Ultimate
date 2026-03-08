@@ -30,14 +30,12 @@ class _StoreScreenState extends State<StoreScreen> with SingleTickerProviderStat
       ),
       body: TabBarView(
         controller: _tab,
-        children: [
-          _buildBody("قسم الكل"),
-          _buildBody("قسم المتاجر"),
-          _buildBody("قسم المنتجات"),
+        children: const [
+          Center(child: Text("قائمة الكل")),
+          Center(child: Text("قائمة المتاجر")),
+          Center(child: Text("قائمة المنتجات")),
         ],
       ),
     );
   }
-
-  Widget _buildBody(String title) => Center(child: Text(title));
 }
