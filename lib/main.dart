@@ -23,6 +23,7 @@ class FlexYemenApp extends StatelessWidget {
         theme: ThemeData(
           brightness: Brightness.dark,
           primaryColor: Colors.amber,
+          fontFamily: 'Cairo',
         ),
         home: StoreScreen(onAdd: () {}),
       ),
