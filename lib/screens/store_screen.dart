@@ -1,49 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:flex_yemen_ultimate/utils/constants.dart';
+import 'package:provider/provider.dart';
+import '../providers/store_provider.dart';
 
-class StoreScreen extends StatelessWidget {
-  final VoidCallback? onAdd;
+class StoreScreen extends StatefulWidget {
+  final VoidCallback onAdd;
+  const StoreScreen({super.key, required this.onAdd});
 
-  const StoreScreen({super.key, this.onAdd});
+  @override
+  State<StoreScreen> createState() => _StoreScreenState();
+}
+
+class _StoreScreenState extends State<StoreScreen> with SingleTickerProviderStateMixin {
+  late TabController _tab;
+  @override
+  void initState() {
+    super.initState();
+    _tab = TabController(length: 3, vsync: this);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 3,
-      padding: const EdgeInsets.all(16),
-      mainAxisSpacing: 16,
-      crossAxisSpacing: 16,
-      children: [
-        _buildCategory(Icons.shopping_cart, "الماركت"),
-        _buildCategory(Icons.restaurant, "مطاعم"),
-        _buildCategory(Icons.phone_iphone, "تقنية"),
-        _buildCategory(Icons.watch, "اكسسوارات"),
-        _buildCategory(Icons.health_and_safety, "صحية"),
-        _buildCategory(Icons.more_horiz, "المزيد"),
-      ],
-    );
-  }
-
-  Widget _buildCategory(IconData icon, String label) {
-    return InkWell(
-      onTap: onAdd ?? () {},
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppColors.cardDark,
-          borderRadius: BorderRadius.circular(16),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("متجر فلكس"),
+        bottom: TabBar(
+          controller: _tab,
+          tabs: const [Tab(text: "الكل"), Tab(text: "متاجر"), Tab(text: "منتجات")],
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, color: AppColors.primaryGold, size: 32),
-            const SizedBox(height: 8),
-            Text(
-              label,
-              style: const TextStyle(fontSize: 12),
-            ),
-          ],
-        ),
+      ),
+      body: TabBarView(
+        controller: _tab,
+        children: [
+          _buildBody("قسم الكل"),
+          _buildBody("قسم المتاجر"),
+          _buildBody("قسم المنتجات"),
+        ],
       ),
     );
   }
+
+  Widget _buildBody(String title) => Center(child: Text(title));
 }

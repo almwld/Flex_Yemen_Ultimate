@@ -1,33 +1,16 @@
-name: flex_yemen_ultimate
+name: flex_yemen
 description: Flex Yemen Ultimate App
-publish_to: 'none'
 version: 1.0.0+1
+publish_to: 'none'
 
 environment:
-  sdk: ">=3.2.0 <4.0.0"
+  sdk: '>=3.0.0 <4.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.8
-  flutter_svg: ^2.0.10+1
-
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_launcher_icons: ^0.13.1
+  provider: ^6.1.1
+  carousel_slider: ^5.0.0
 
 flutter:
   uses-material-design: true
-  # ✅ الخط مؤقتاً معطل
-  # fonts:
-  #   - family: Cairo
-  #     fonts:
-  #       - asset: assets/fonts/Cairo-Regular.ttf
-  #         weight: 400
-
-flutter_launcher_icons:
-  android: true
-  ios: false
-  image_path: "assets/icon/logo.png"
-  adaptive_icon_background: "#D4AF37"
